@@ -35,7 +35,8 @@ class ProductController extends Controller
             'stock' => 'required|integer|min:0'
         ]);
 
-        Product::created($validated);
+        Product::create($validated);
+
 
         return redirect()->route('products.index')
             ->with('success', 'Produk berhasil ditambahkan!');

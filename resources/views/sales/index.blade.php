@@ -13,6 +13,40 @@
     </a>
 </div>
 
+{{-- RINGKASAN TOTAL --}}
+<div class="row g-3 mb-4">
+    <div class="col-md-4">
+        <div class="card border-0 shadow-sm">
+            <div class="card-body">
+                <small class="text-muted">Total Subtotal (Semua Data)</small>
+                <div class="fw-bold fs-5">
+                    Rp {{ number_format($grandSubtotal ?? 0, 0, ',', '.') }}
+                </div>
+            </div>
+        </div>
+    </div>
+    <div class="col-md-4">
+        <div class="card border-0 shadow-sm">
+            <div class="card-body">
+                <small class="text-muted">Total Diskon (Semua Data)</small>
+                <div class="fw-bold fs-5 text-danger">
+                    Rp {{ number_format($grandDiscount ?? 0, 0, ',', '.') }}
+                </div>
+            </div>
+        </div>
+    </div>
+    <div class="col-md-4">
+        <div class="card border-0 shadow-sm">
+            <div class="card-body">
+                <small class="text-muted">Total Penjualan (Semua Data)</small>
+                <div class="fw-bold fs-5 text-success">
+                    Rp {{ number_format($grandTotal ?? 0, 0, ',', '.') }}
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
 <div class="card">
     <div class="card-body">
         <table class="table table-hover">
@@ -51,7 +85,7 @@
                         <form action="{{ route('sales.destroy', $sale) }}" method="POST" class="d-inline">
                             @csrf
                             @method('DELETE')
-                            <button type="submit" class="btn btn-sm btn-danger" 
+                            <button type="submit" class="btn btn-sm btn-danger"
                                     onclick="return confirm('Yakin ingin menghapus transaksi ini?')">
                                 <i class="bi bi-trash"></i>
                             </button>
@@ -65,9 +99,9 @@
                 @endforelse
             </tbody>
         </table>
-        
+
         <div class="mt-3">
-            {{ $sales->links() }}
+            {{ $sales->links('pagination::bootstrap-5') }}
         </div>
     </div>
 </div>

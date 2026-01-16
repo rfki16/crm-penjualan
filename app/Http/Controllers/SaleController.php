@@ -16,8 +16,19 @@ class SaleController extends Controller
      */
     public function index()
     {
-        $sales = Sale::with('customer')->latest()->paginate(10);
-        return view('sales.index', compact('sales'));
+        // data per halaman
+        $sales = Sale::with('customer')
+    ->orderByDesc('id')   // biar invoice rapi: 6,5,4,3,2...
+    ->paginate(5);
+
+
+
+        // TOTAL KESELURUHAN (semua data, bukan cuma halaman ini)
+        $grandSubtotal = Sale::sum('subtotal');
+        $grandDiscount = Sale::sum('discount');
+        $grandTotal    = Sale::sum('total');
+
+        return view('sales.index', compact('sales', 'grandSubtotal', 'grandDiscount', 'grandTotal'));
     }
 
     /**
