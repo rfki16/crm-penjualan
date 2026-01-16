@@ -1,7 +1,24 @@
 <?php
 
 use Illuminate\Support\Facades\Route;
+use App\Http\Controllers\CustomerController;
+use App\Http\Controllers\ProductController;
+use App\Http\Controllers\SaleController;
+use App\Http\Controllers\ReportController;
 
+// Halaman Dashboard
 Route::get('/', function () {
-    return view('welcome');
-});
+    return view('dashboard');
+})->name('dashboard');
+
+// Routes untuk Customer (CRUD lengkap)
+Route::resource('customers', CustomerController::class);
+
+// Routes untuk Product (CRUD lengkap)
+Route::resource('products', ProductController::class);
+
+// Routes untuk Sales
+Route::resource('sales', SaleController::class)->except(['edit', 'update']);
+
+// Routes untuk Reports
+Route::get('/reports', [ReportController::class, 'index'])->name('reports.index');
