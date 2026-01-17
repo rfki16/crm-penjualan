@@ -5,12 +5,10 @@ use App\Http\Controllers\CustomerController;
 use App\Http\Controllers\ProductController;
 use App\Http\Controllers\SaleController;
 use App\Http\Controllers\ReportController;
+use App\Http\Controllers\DashboardController;
 
 // Halaman Dashboard
-Route::get('/', function () {
-    return view('dashboard');
-})->name('dashboard');
-
+Route::get('/dashboard', [DashboardController::class, 'index'])->name('dashboard');
 // Routes untuk Customer (CRUD lengkap)
 Route::resource('customers', CustomerController::class);
 
