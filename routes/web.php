@@ -22,3 +22,7 @@ Route::resource('sales', SaleController::class)->except(['edit', 'update']);
 
 // Routes untuk Reports
 Route::get('/reports', [ReportController::class, 'index'])->name('reports.index');
+
+// Routes untuk invoice
+Route::get('/sales/{sale}/invoice', [SaleController::class, 'invoice'])
+    ->name('sales.invoice');

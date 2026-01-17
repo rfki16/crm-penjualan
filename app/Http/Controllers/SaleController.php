@@ -98,7 +98,7 @@ class SaleController extends Controller
             DB::rollBack();
 
             return back()->withInput()
-                ->with('error', 'Gagal membuat transaksi: ' . $e->getMessage());
+                ->with('error', 'Gagal membuat transaksi. Silakan periksa data dan coba lagi.');
         }
     }
 
@@ -109,6 +109,15 @@ class SaleController extends Controller
     {
         $sale->load(['customer', 'saleItems.product']);
         return view('sales.show', compact('sale'));
+    }
+
+    /**
+     * 🧾 TAMPILKAN INVOICE (METHOD BARU)
+     */
+    public function invoice(Sale $sale)
+    {
+        $sale->load(['customer', 'saleItems.product']);
+        return view('sales.invoice', compact('sale'));
     }
 
     /**
