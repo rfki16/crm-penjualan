@@ -7,8 +7,13 @@ use App\Http\Controllers\SaleController;
 use App\Http\Controllers\ReportController;
 use App\Http\Controllers\DashboardController;
 
+Route::get('/', function () {
+    return redirect()->route('dashboard');
+});
+
 // Halaman Dashboard
 Route::get('/dashboard', [DashboardController::class, 'index'])->name('dashboard');
+
 // Routes untuk Customer (CRUD lengkap)
 Route::resource('customers', CustomerController::class);
 
